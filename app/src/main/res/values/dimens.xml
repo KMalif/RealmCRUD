@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="mrgscreen">16dp</dimen>
+    <dimen name="elevationcard">10px</dimen>
+    <dimen name="margintop">15px</dimen>
+</resources>
