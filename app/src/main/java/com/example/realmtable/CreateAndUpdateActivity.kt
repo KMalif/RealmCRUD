@@ -1,5 +1,6 @@
 package com.example.realmtable
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,22 +23,21 @@ class CreateAndUpdateActivity : AppCompatActivity() {
             realm.where(student::class.java).findAll()
             var student = realm.createObject(student::class.java)
             student.setNama(name_editText.text.toString().trim())
-//            student.setNim(nim_editText)
+            student.setNim(nim_editText.text.toString().toInt())
             student.setEmail(email_editText.text.toString().trim())
             student.setAlamat(alamat_editText.text.toString().trim())
             name_editText.setText("")
-
+            nim_editText.setText(0)
             email_editText.setText("")
             alamat_editText.setText("")
 
             realm.commitTransaction()
             getallStudent()
+            startActivity(Intent(this, MainActivity::class.java))
 
         }
 
-
     }
-
 
     private fun getallStudent(){
         realm.where(student::class.java).findAll().let {

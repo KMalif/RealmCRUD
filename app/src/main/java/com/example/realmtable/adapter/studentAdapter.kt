@@ -11,7 +11,7 @@ import com.example.realmtable.R
 import com.example.realmtable.model.student
 import kotlinx.android.synthetic.main.item_student.view.*
 
-class studentAdapter (private val students: MutableList<student> ) : RecyclerView.Adapter<studentAdapter.studentViewHolder>(){
+class studentAdapter ( var students: MutableList<student> ) : RecyclerView.Adapter<studentAdapter.studentViewHolder>(){
 
     inner class studentViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
 
