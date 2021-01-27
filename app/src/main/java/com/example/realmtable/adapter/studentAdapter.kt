@@ -1,39 +1,62 @@
 package com.example.realmtable.adapter
 
+import android.R.id
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.realmtable.CreateAndUpdateActivity
 import com.example.realmtable.R
 import com.example.realmtable.model.student
-import kotlinx.android.synthetic.main.item_student.view.*
 
-class studentAdapter ( var students: MutableList<student> ) : RecyclerView.Adapter<studentAdapter.studentViewHolder>(){
 
-    inner class studentViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+class studentAdapter ( val context: Context, private val users : MutableList<student> = mutableListOf()) : RecyclerView.Adapter<studentAdapter.studentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): studentViewHolder {
-        return studentViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_student, parent, false))
+        return studentViewHolder(LayoutInflater.from(context).inflate(R.layout.item_student, parent, false))
     }
 
-    override fun getItemCount() = students.size
+    override fun getItemCount(): Int {
+        return users.size
+    }
 
     override fun onBindViewHolder(holder: studentViewHolder, position: Int) {
-        holder.itemView.apply {
-            name_textview.text = students[position].getNama()
-            nim_textview.text = students[position].getNim().toString()
-            email_textview.text = students[position].getEmail()
-            alamat_textview.text = students[position].getAlamat()
+        holder.bindModel(users[position])
+    }
+
+    fun setStudent(data : List<student>){
+        users.clear()
+        users.addAll(data)
+        notifyDataSetChanged()
+    }
+
+    inner class studentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val tvId :TextView = itemView.findViewById(R.id.id_textview)
+        val tvNama :TextView = itemView.findViewById(R.id.name_textview)
+        val tvNim :TextView = itemView.findViewById(R.id.nim_textview)
+        val tvEmail :TextView = itemView.findViewById(R.id.email_textview)
+        val tvAlamat :TextView = itemView.findViewById(R.id.alamat_textview)
+
+
+
+        fun bindModel(s: student){
+            tvId.text = s.getId().toString()
+            tvNama.text = s.getNama()
+            tvNim.text = s.getNim().toString()
+            tvEmail.text = s.getEmail()
+            tvAlamat.text = s.getAlamat()
+
+            itemView.setOnClickListener {
+
+                val intent = Intent(context, CreateAndUpdateActivity::class.java)
+                intent.putExtra("id", "" + tvId)
+                context.startActivity(intent)            }
+
         }
     }
 
-    fun setStudent(data:List<student>){
-        students.clear()
-        students.addAll(data)
-        notifyDataSetChanged()
-    }
 
 }

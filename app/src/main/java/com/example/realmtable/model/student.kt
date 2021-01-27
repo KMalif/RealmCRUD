@@ -6,11 +6,19 @@ import io.realm.annotations.RealmClass
 
 @RealmClass
 open class student:RealmObject() {
+    private var id: Int? = null
     private var nim:Int? = null
     private var nama:String = ""
     private var email:String = ""
     private var alamat:String = ""
 
+
+    fun setId (id: Int){
+        this.id = id
+    }
+    fun getId ():Int?{
+        return id
+    }
 
     fun setNama (nama:String){
         this.nama = nama
