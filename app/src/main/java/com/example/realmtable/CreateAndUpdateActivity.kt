@@ -14,6 +14,7 @@ class CreateAndUpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_and_update)
         initView()
+        getDataItem()
 
         save_button.setOnClickListener {
             realm.beginTransaction()
@@ -43,6 +44,14 @@ class CreateAndUpdateActivity : AppCompatActivity() {
     fun initView(){
         realm = Realm.getDefaultInstance()
     }
+    fun getDataItem(){
+        val nama = intent.getStringExtra("nama")
+        val nim = intent.getStringExtra("nim")
+        val email = intent.getStringExtra("email")
+        val alamat = intent.getStringExtra("alamat")
 
+        val hasil = "$nama"
+       
+    }
 
 }

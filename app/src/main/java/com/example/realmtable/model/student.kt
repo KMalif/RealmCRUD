@@ -2,7 +2,7 @@ package com.example.realmtable.model
 
 import io.realm.RealmObject
 import io.realm.annotations.RealmClass
-
+import kotlinx.android.parcel.Parcelize
 
 @RealmClass
 open class student:RealmObject() {

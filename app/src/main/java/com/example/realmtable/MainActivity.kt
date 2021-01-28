@@ -26,7 +26,12 @@ class MainActivity : AppCompatActivity() {
     }
     fun initView(){
         rvMhs.layoutManager = lm
-        studentAdapter = studentAdapter(this)
+        studentAdapter = studentAdapter( mutableListOf(), object : studentAdapter.OnAdapterListener{
+            override fun onClick(student: student) {
+
+            }
+
+        })
         rvMhs.adapter = studentAdapter
         realm = Realm.getDefaultInstance()
         realm.where(student::class.java).findAll().let {
