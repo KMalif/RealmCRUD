@@ -3,6 +3,7 @@ package com.example.realmtable
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.realmtable.adapter.studentAdapter
 import com.example.realmtable.model.student
@@ -28,9 +29,13 @@ class MainActivity : AppCompatActivity() {
         rvMhs.layoutManager = lm
         studentAdapter = studentAdapter( mutableListOf(), object : studentAdapter.OnAdapterListener{
             override fun onClick(student: student) {
-
+                startActivity(Intent(this@MainActivity, CreateAndUpdateActivity::class.java)
+                        .putExtra("name", student.getNama())
+                        .putExtra("nim", student.getNim())
+                        .putExtra("email", student.getEmail())
+                        .putExtra("alamat", student.getAlamat())
+                )
             }
-
         })
         rvMhs.adapter = studentAdapter
         realm = Realm.getDefaultInstance()

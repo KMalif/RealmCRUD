@@ -1,18 +1,17 @@
 package com.example.realmtable.adapter
 
-import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.realmtable.CreateAndUpdateActivity
 import com.example.realmtable.R
 import com.example.realmtable.model.student
-import java.util.ArrayList
 
 
-class studentAdapter( private val users: MutableList<student> , private val listener: OnAdapterListener) : RecyclerView.Adapter<studentAdapter.studentViewHolder>() {
+
+class studentAdapter( private val users: MutableList<student> , private val listener: studentAdapter.OnAdapterListener) : RecyclerView.Adapter<studentAdapter.studentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): studentViewHolder {
         return studentViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_student, parent, false))
@@ -25,7 +24,7 @@ class studentAdapter( private val users: MutableList<student> , private val list
     override fun onBindViewHolder(holder: studentViewHolder, position: Int) {
         holder.bindModel(users[position])
         holder.itemView.setOnClickListener {
-            listener.onClick(student())
+            listener.onClick(users[position])
         }
     }
 
@@ -48,7 +47,6 @@ class studentAdapter( private val users: MutableList<student> , private val list
             tvNim.text = s.getNim().toString()
             tvEmail.text = s.getEmail()
             tvAlamat.text = s.getAlamat()
-
         }
 
     }

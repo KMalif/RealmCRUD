@@ -45,13 +45,7 @@ class CreateAndUpdateActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
     }
     fun getDataItem(){
-        val nama = intent.getStringExtra("nama")
-        val nim = intent.getStringExtra("nim")
-        val email = intent.getStringExtra("email")
-        val alamat = intent.getStringExtra("alamat")
-
-        val hasil = "$nama"
-       
+        name_editText.setText(intent.getStringExtra("name"))
     }
 
 }
